@@ -41,19 +41,27 @@ Analysis: explain your design decisions and tradeoffs, use your tool of choice t
 
 There are two main parts of the solution 
 
-## Platform
+## Platform 
 
-### EntryPoint 
-* Main class that orchestrates consumer-producer  
 ### Producer Consumer framework
 * package `com.rahul.fanatics.orchestration` implements Consumer Producer pattern  to run sequence generation and consumption in parallel fashion.
+** Producer - Encapsulates a producer and starts `ProducerRunnable`s in a thread pool
+** Consumer - Encapsulates a consumer and runs `ConsumerRunnable`s in a thread pool that it manages
+** SharedQueue - shared between producer and consumer thread to producer and consume tasks
+** Poison pill - special message on queue to indicate that queue is bounded and there is no more messages to process
+** logic to indicate to the main thread that all producers and consumers have run their course and can be shut down  
 
-## Tasks
+### Tasks
 
 As required there are two tasks 
 
 * com.rahul.fanatics.tasks.LongestOnesTask
 * com.rahul.fanatics.tasks.LongestPrefixTask
+
+Tasks encapsulate logic for
+* producing the problem sequence
+* solving for the problem sequence 
+* managing how results are to be aggregated - in this case , store top n results only 
 
 ## Running the solution 
 
@@ -70,4 +78,5 @@ As required there are two tasks
 * Navigate to main class `com.rahul.fanatics.EntryPoint`
 * Run main class with input parameters `LongestOnes 100000 1234567`
 
-
+### EntryPoint
+* Main class that orchestrates consumer-producer. Its    
