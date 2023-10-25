@@ -45,11 +45,11 @@ There are two main parts of the solution
 
 ### Producer Consumer framework
 * package `com.rahul.fanatics.orchestration` implements Consumer Producer pattern  to run sequence generation and consumption in parallel fashion.
-** Producer - Encapsulates a producer and starts `ProducerRunnable`s in a thread pool
-** Consumer - Encapsulates a consumer and runs `ConsumerRunnable`s in a thread pool that it manages
-** SharedQueue - shared between producer and consumer thread to producer and consume tasks
-** Poison pill - special message on queue to indicate that queue is bounded and there is no more messages to process
-** logic to indicate to the main thread that all producers and consumers have run their course and can be shut down  
+* Producer - Encapsulates a producer and starts `ProducerRunnable`s in a thread pool
+* Consumer - Encapsulates a consumer and runs `ConsumerRunnable`s in a thread pool that it manages
+* SharedQueue - shared between producer and consumer thread to producer and consume tasks
+* Poison pill - special message on queue to indicate that queue is bounded and there is no more messages to process
+* Logic to indicate to the main thread that all producers and consumers have run their course and can be shut down  
 
 ### Tasks
 
@@ -79,4 +79,4 @@ Tasks encapsulate logic for
 * Run main class with input parameters `LongestOnes 100000 1234567`
 
 ### EntryPoint
-* Main class that orchestrates consumer-producer. Its    
+* Main class that orchestrates consumer-producer.    
